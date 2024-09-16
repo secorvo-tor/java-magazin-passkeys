@@ -1,0 +1,13 @@
+services:
+  passkey-demp-app:
+    image: "passkey-demo-app:latest"
+    container_name: "passkey-demo-app"
+    build:
+      context: ../../
+      dockerfile: etc/docker/Dockerfile.local
+    ports:
+      - "8080:8080"
+    environment:
+      - RELYING_PARTY_ID=localhost
+      - ACTIVE_PROFILE=local
+      - JAVA_OPTS=-Dcom.sun.security.enableCRLDP=true

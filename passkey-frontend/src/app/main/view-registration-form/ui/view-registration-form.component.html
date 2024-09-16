@@ -1,0 +1,35 @@
+<div class="container flex flex-column align-items-center">
+    <span>Platform authenticator available: {{ isAuthenticatorAvailable | async }}</span>
+    <p-divider class="w-full" />
+
+    <p-floatLabel class="mt-3">
+        <input id="username" type="text" pInputText [(ngModel)]="username" />
+        <label for="username">Enter username</label>
+    </p-floatLabel>
+    <button pButton label="Start registration" class="mt-3 w-min" icon="pi pi-save" (click)="onStartRegistration()"></button>
+
+    <div *ngIf="registrationState >= RegistrationState.CHALLENGE" class="w-full flex flex-column align-items-center">
+        <p-divider class="w-full" />
+
+        <p-panel header="Registration Challenge (CredentialCreationOptions)" class="w-full">
+            <pre class="json-container" [innerHTML]="prettifyJson(authChallengeDisplay)"></pre>
+        </p-panel>
+
+        <button pButton label="Create credentials" class="mt-3 w-min" icon="pi pi-save" (click)="onCreateCredentials()"></button>
+    </div>
+
+    <div *ngIf="registrationState >= RegistrationState.FINISH" class="w-full flex flex-column align-items-center">
+        <p-divider class="w-full" />
+        <p-panel header="Registration Challenge" class="w-full">
+            <pre class="json-container pretty-json" [innerHTML]="prettifyJson(authCredentials)"></pre>
+        </p-panel>
+        <button pButton label="Finish registration" class="mt-3 w-min" icon="pi pi-save" (click)="onFinishRegistration()"></button>
+    </div>
+
+    <div *ngIf="registrationState >= RegistrationState.FINAL" class="w-full flex flex-column align-items-center">
+        <p-divider class="w-full" />
+        <p-panel header="Registration object saved on server" class="w-full">
+            <pre class="json-container pretty-json" [innerHTML]="prettifyJson(authFinalResponse)"></pre>
+        </p-panel>
+    </div>
+</div>

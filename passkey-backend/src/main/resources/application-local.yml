@@ -1,0 +1,5 @@
+relying-party:
+    id: localhost
+    allowOriginPort: true
+    allowedOrigins:
+      - "http://localhost"

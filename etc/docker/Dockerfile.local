@@ -1,0 +1,7 @@
+FROM eclipse-temurin:21-alpine
+
+COPY ./passkey-backend/target/passkey-backend-*.jar /passkey-app.jar
+
+CMD java -jar -Dspring.profiles.active=$ACTIVE_PROFILE \
+    $JAVA_OPTS \
+    passkey-app.jar

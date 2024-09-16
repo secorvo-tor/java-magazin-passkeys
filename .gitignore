@@ -1,0 +1,4 @@
+# Default ignored files
+.idea
+/passkey-frontend/target
+/passkey-backend/target

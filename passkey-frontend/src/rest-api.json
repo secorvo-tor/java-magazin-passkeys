@@ -1,0 +1,144 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Passkey demo rest api",
+        "version": "2.0.0",
+        "description": "REST API description"
+    },
+    "servers": [
+        {
+            "description": "Dev host",
+            "url": "http://localhost:8080"
+        }
+    ],
+    "paths": {
+        "/register": {
+            "get": {
+                "description": "Start registration.",
+                "operationId": "startRegistration",
+                "tags": [
+                    "registration"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Credentials challenge",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Finish registration",
+                "operationId": "finishRegistration",
+                "tags": [
+                    "registration"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Passkey successfully registered"
+                    },
+                    "403": {
+                        "description": "Invalid credentials."
+                    },
+                    "500": {
+                        "description": "Error processing registration."
+                    }
+                }
+            }
+        },
+        "/authenticate": {
+            "get": {
+                "description": "Start authentication.",
+                "operationId": "startAuthentication",
+                "tags": [
+                    "authentication"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Authentication challenge",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Finish authentication",
+                "operationId": "finishAuthentication",
+                "tags": [
+                    "authentication"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully authenticated"
+                    },
+                    "403": {
+                        "description": "Invalid credentials."
+                    },
+                    "500": {
+                        "description": "Error processing authentication."
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "registration",
+            "description": "Operations to register a new passkey."
+        },
+        {
+            "name": "authentication",
+            "description": "Operations to authenticate as an existing user"
+        }
+    ]
+}

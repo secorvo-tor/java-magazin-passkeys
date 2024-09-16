@@ -1,0 +1,30 @@
+<div class="container flex flex-column align-items-center">
+    <p-floatLabel class="mt-3">
+        <input id="username" type="text" pInputText [(ngModel)]="username"/>
+        <label for="username">Enter username</label>
+    </p-floatLabel>
+    <button pButton label="Start authentication" class="mt-3 w-min" icon="pi pi-save" (click)="onStartAuthentication()"></button>
+
+    <div *ngIf="authenticationState >= AuthenticationState.CHALLENGE" class="w-full flex flex-column align-items-center">
+        <p-divider class="w-full"/>
+        <p-panel header="Authentication Challenge (CredentialRequestOptions)" class="w-full">
+            <pre class="json-container pretty-json" [innerHTML]="prettifyJson(challengeDisplay)"></pre>
+        </p-panel>
+        <button pButton label="Fetch credentials" class="mt-3 w-min" icon="pi pi-save" (click)="onFetchCredentials()"></button>
+    </div>
+
+    <div *ngIf="authenticationState >= AuthenticationState.RETRIEVE_CREDENTIALS" class="w-full flex flex-column align-items-center">
+        <p-divider class="w-full"/>
+        <p-panel header="Authentication credentials (AuthenticationPublicKeyCredential)" class="w-full">
+            <pre class="json-container pretty-json" [innerHTML]="prettifyJson(credentials)"></pre>
+        </p-panel>
+        <button pButton label="Finish authentication" class="mt-3 w-min" icon="pi pi-save" (click)="onFinishAuthentication()"></button>
+    </div>
+
+    <div *ngIf="authenticationState >= AuthenticationState.FINISH" class="w-full flex flex-column align-items-center">
+        <p-divider class="w-full"/>
+        <p-panel header="Finish authentication response" class="w-full">
+            <pre class="json-container pretty-json" [innerHTML]="prettifyJson(finalResponse)"></pre>
+        </p-panel>
+    </div>
+</div>

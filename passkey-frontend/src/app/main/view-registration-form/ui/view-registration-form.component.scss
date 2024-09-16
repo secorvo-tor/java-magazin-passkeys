@@ -1,0 +1,19 @@
+.container {
+    border: 5px solid;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.panels {
+    overflow-wrap: anywhere;
+}
+
+.panel-box {
+    height: auto;
+    max-height: max-content;
+}
+
+.pretty-json {
+    overflow: auto;
+}

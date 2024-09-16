@@ -1,0 +1,14 @@
+spring:
+    application:
+        name: passkey-demo
+
+springdoc:
+    swagger-ui:
+        path: /swagger
+
+relying-party:
+    id: ${RELYING_PARTY_ID:passkey.andrena.de}
+    name: Passkeys demo app
+    allowOriginPort: false
+    allowedOrigins:
+        - "https://andrena.de"

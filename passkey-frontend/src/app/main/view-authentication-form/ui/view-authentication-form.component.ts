@@ -59,9 +59,9 @@ export class ViewAuthenticationFormComponent {
 
     async onFetchCredentials() {
         var chal = <PublicKeyCredentialRequestOptions> {
-            allowCredentials: [],
+            allowCredentials: this.challenge?.publicKey?.allowCredentials,
             challenge: this.challenge?.publicKey?.challenge,
-            rpId: 'localhost',
+            rpId: this.challenge?.publicKey?.rpId,
             hints: ['client-device']
         }
         var options = <CredentialRequestOptions> {

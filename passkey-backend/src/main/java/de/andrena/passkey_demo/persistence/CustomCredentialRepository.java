@@ -80,7 +80,9 @@ public class CustomCredentialRepository implements CredentialRepository {
         if (registrations.containsKey(username)) {
             registrations.get(username).add(userRegistration);
         } else {
-            registrations.put(username, Set.of(userRegistration));
+            var set = new HashSet<UserRegistration>();
+            set.add(userRegistration);
+            registrations.put(username, set);
         }
     }
 
